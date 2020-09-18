@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>webrtc截图</title>
+    <script src="{% static '/webrtc/second.js' %}"></script>
+</head>
+<body>
+
+<div class="camera">
+    <video id="video" autoplay></video>
+    <button id="startbutton">拍照</button>
+</div>
+
+
+
+<canvas id="canvas">
+{#   捕获的帧会被存储在这里,然后通过一些方式输出为img#}
+</canvas>
+
+<div class="output">
+    <img  alt="图片展示位置" id="photo">
+</div>
+
+</body>
+</html>

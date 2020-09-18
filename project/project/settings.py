@@ -30,7 +30,7 @@ SECRET_KEY = 'e^c4xdkd@y($ns+5=hv!3(4)i-kgwsb1+&aj6&loj9)kw=chdg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     "data",#这是用于返回数据接口的app
     "ckeditor",#富文本编辑器
     "ckeditor_uploader",#富文本编辑器上传文件使用
+    "rest_framework",#drf
+    "webrtc_use",#直播界面使用
 ]
 
 MIDDLEWARE = [

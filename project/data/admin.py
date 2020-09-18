@@ -37,5 +37,5 @@ class Blog_display(admin.ModelAdmin):
 
 @admin.register(Comment)
 class Comment_display(admin.ModelAdmin):
-    list_display = ("text","created_time","user","super_comment")
+    list_display = ("text","created_time","user")
     ordering = ("-created_time",)

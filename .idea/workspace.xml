@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1d799797-9c5f-43ff-99ce-e26e70efe904" name="默认的" comment="">
+      <change afterPath="$PROJECT_DIR$/project/static/webrtc/second.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/templates/second_demo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/data/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/data/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/data/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/data/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/data/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/data/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/data/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/data/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/data/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/data/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/project/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/project/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/project/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/static/webrtc/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/templates/first_demo.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/first_demo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/webrtc_use/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/webrtc_use/urls.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JupyterTrust" id="cf4538ed-0b9a-44df-804d-bfc53a5d4151" />
+  <component name="ProjectId" id="1hUTlR6bxb6TbCmIMz64eE9kzmu" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="新增" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/project/project/settings.py" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RunManager">
+    <configuration name="网站构建" type="Python.DjangoServer" factoryName="Django server">
+      <module name="web_create" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="project.settings" />
+      </envs>
+      <option name="SDK_HOME" value="D:\Anocanda\envs\web_use\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/project" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
+      <module name="web_create" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="D:\Anocanda\envs\web_use\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/project" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1d799797-9c5f-43ff-99ce-e26e70efe904" name="默认的" comment="" />
+      <created>1600064823200</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600064823200</updated>
+      <workItem from="1600064824280" duration="22140000" />
+      <workItem from="1600156892288" duration="3913000" />
+      <workItem from="1600164090116" duration="20934000" />
+      <workItem from="1600238025034" duration="1081000" />
+      <workItem from="1600254803861" duration="1130000" />
+      <workItem from="1600317449452" duration="8206000" />
+      <workItem from="1600388727594" duration="4529000" />
+      <workItem from="1600397208964" duration="21135000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="492" y="255" key="#Notifications" timestamp="1600066192542">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="492" y="255" key="#Notifications/0.0.1536.864/1920.0.1080.1920@0.0.1536.864" timestamp="1600066192542" />
+    <state x="223" y="87" width="1089" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600097024788">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="223" y="87" width="1089" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.864/1920.0.1080.1920@0.0.1536.864" timestamp="1600097024788" />
+    <state x="499" y="178" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1600065152762">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="499" y="178" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.864/1920.0.1080.1920@0.0.1536.864" timestamp="1600065152762" />
+    <state x="668" y="177" key="EnvironmentVariablesDialog" timestamp="1600065126345">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="668" y="177" key="EnvironmentVariablesDialog/0.0.1536.864/1920.0.1080.1920@0.0.1536.864" timestamp="1600065126345" />
+    <state x="125" y="166" key="FileChooserDialogImpl" timestamp="1600090242940">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="125" y="166" key="FileChooserDialogImpl/0.0.1536.864/1920.0.1080.1920@0.0.1536.864" timestamp="1600090242940" />
+    <state width="1493" height="204" key="GridCell.Tab.0.bottom" timestamp="1600355852916">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="204" key="GridCell.Tab.0.bottom/0.0.1536.864/1920.0.1080.1920@0.0.1536.864" timestamp="1600355852916" />
+    <state width="725" height="182" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1600160292677" />
+    <state width="1493" height="204" key="GridCell.Tab.0.center" timestamp="1600355852916">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="204" key="GridCell.Tab.0.center/0.0.1536.864/1920.0.1080.1920@0.0.1536.864" timestamp="1600355852916" />
+    <state width="725" height="182" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1600160292677" />
+    <state width="1493" height="204" key="GridCell.Tab.0.left" timestamp="1600355852915">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="204" key="GridCell.Tab.0.left/0.0.1536.864/1920.0.1080.1920@0.0.1536.864" timestamp="1600355852915" />
+    <state width="725" height="182" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1600160292677" />
+    <state width="1493" height="204" key="GridCell.Tab.0.right" timestamp="1600355852916">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="204" key="GridCell.Tab.0.right/0.0.1536.864/1920.0.1080.1920@0.0.1536.864" timestamp="1600355852916" />
+    <state width="725" height="182" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1600160292677" />
+    <state x="185" y="118" key="SettingsEditor" timestamp="1600090283167">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="185" y="118" key="SettingsEditor/0.0.1536.864/1920.0.1080.1920@0.0.1536.864" timestamp="1600090283167" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1600175342425">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/0.0.1536.864/1920.0.1080.1920@0.0.1536.864" timestamp="1600175342425" />
+    <state x="545" y="305" width="598" height="513" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1600090282226">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="545" y="305" width="598" height="513" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.0.1536.864/1920.0.1080.1920@0.0.1536.864" timestamp="1600090282226" />
+    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1600430905479">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup/0.0.1536.864/1920.0.1080.1920@0.0.1536.864" timestamp="1600430905479" />
+    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1600158272826" />
+  </component>
+</project>

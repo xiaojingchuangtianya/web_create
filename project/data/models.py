@@ -12,9 +12,11 @@ class Add_User(models.Model):
     school = models.CharField(max_length=20,verbose_name="就读或毕业高校",blank=True,null=True)
     description = models.CharField(max_length=200,verbose_name="用几句话来描述一下你自己吧!",null=True)
 
+    def __str__(self):
+        return str(self.user_id)
 
 class Hot(models.Model):
-    count = models.IntegerField(verbose_name="热度")
+    count = models.SmallIntegerField(verbose_name="热度",default=0)
     def __str__(self):
         return str(self.count)
 
@@ -22,7 +24,7 @@ class Hot(models.Model):
 class Blog_Type(models.Model):
     #希望在博客分类进行排行,按博客类的热度进行
     type_name = models.CharField(max_length=20,verbose_name="博客分类")
-    hot = models.ForeignKey(Hot,on_delete=models.DO_NOTHING)
+    hot = models.ForeignKey(Hot,on_delete=models.DO_NOTHING,default=1)
 
     def __str__(self):
         return self.type_name
@@ -36,14 +38,15 @@ class Blog(models.Model):
     content = RichTextUploadingField(config_name="blog")
     #删除使用逻辑删除,不物理删除
     is_delete = models.BooleanField(default=False)
-    hot = models.ForeignKey(Hot,on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(User,on_delete=models.DO_NOTHING)
+    hot = models.ForeignKey(Hot,on_delete=models.DO_NOTHING,auto_created=True)
     def __str__(self):
         return self.title
 
 #博客评论类
 class Comment(models.Model):
     #用自身做自己的外键
-    super_comment= models.ForeignKey("self",on_delete=models.DO_NOTHING)
+    # super_comment= models.ForeignKey("self",on_delete=models.DO_NOTHING)
     text = models.CharField(max_length=200,verbose_name="评论内容")
     created_time = models.DateTimeField(auto_created=True)
     user = models.ForeignKey(User,on_delete=models.DO_NOTHING,default=1)

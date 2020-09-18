@@ -1,0 +1,267 @@
+序列化:将字典,列表,模型对象转换为json数据
+
+反序列化:将json转化为模型对象,字典,列表
+
+定义一个序列化器:创建serializer.py()简单来说就是照抄
+    1.和模型的字段名字一致
+    2.和模型类字段类型一致
+    3.和模型字段选项一致
+
+序列化单个对象
+one_test=Test.objects.get(id=1)#获取数据库对象
+instance=testSerializer(instance=one_test)#选择实例,创建序列化器
+#instance.data,返回转换好的数据
+
+序列化多个对象(差距就在序列化时添加many=True)
+all_test =Test.objects.all()#获取数据库对象
+instance1 =testSerializer(instance=all_test,many=True)#选择实例,创建序列化器
+#instance.data,返回转换号的数据
+
+
+#关联外键的
+可以输出三种形式:
+    输出主键值:
+        test_foreign = serializers.PrimaryKeyRelatedField(read_only=True)#设置只读
+        test_foreign =serializers.PrimaryKeyRelatedField(queryset=Test_f.objects.all())#指向我的数据来源集
+    输出__str__字段内容
+        test_foreign=serializers.StringRelatedField(read_only=True)
+    输出关联到的那个模型的全部内容
+        #将外键所有信息返回,但需要先定义好一个外键的序列化器,用于序列化外键
+        test_foreign =testFSerializer()
+
+
+定义好视图类后,将整个视图的类名编写到url里,然后类名.as_view()即可
+
+
+反序列化:
+    1.校验字段类型
+    2.校验字段选项
+    3.校验单字段(方法)
+    4.校验多字段(方法)
+    5自定义校验(方法)
+
+
+首先读取前端返回的数据,
+然后通过序列化器get_data=testSerializer(data=data_dict)
+再经过检测get_data.is_valid(raise_exception=True)#添加raise是为了在出现字段错误时返回报错,
+检验有:
+单字段校验需要在序列化器类下定义个validate_属性名 的方法,在此方法内进行校核,通过则return,否则raise ValidationError返回报错
+    def validate_test1(self,value):
+        if "hello" in value:
+            return value
+        else:
+            raise serializers.ValiationError("错误信息")
+多字段校验(就是模型需要两个甚至多个字段比较)
+    def validate(self,attrs):
+        if attrs["test1"] == attrs["test2"]:
+            return attrs
+        else:
+            raise serailizer.ValidationError("报错信息!")
+自定义的校验(比较垃圾)
+    在序列化器外新建一个方法
+    def my_check(value):
+        #判断方法...
+    再在序列化器内该字段使用valiator=[方法名],但是不太建议使用,单字段校核就可以了
+最后入库:
+    1.新建对象(create)
+    在序列化器内重写create方法,对校验后的数据进行写入
+    def create(self, validated_data):
+        test=Test.objects.create(**validated_data)#直接对验证后的数据解码写入下
+    2.更新对象(update)
+    传入对象有instance(原来的数据对象),validated_data(校验成功后的dict数据)
+    def update(self,instance,validated_data):
+        instance.test1=validated_data["test1"]
+        instance.test2=validated_data["test2"]
+        instance.save()#保存数据,数据入库
+        return instance#返回修改后的结果
+
+
+
+#继承ModelSerializer会参考自己定义的模型类自动生成序列化器
+class TestSerializer(ModelSerializer):
+    phone=serializers.CharField(max_length=10)#还可以自定义设计
+    class Meta:
+        model=Test
+        fields ="__all__"#all代表生成所有字段
+        read_only_fields=["test2"]#设置test2为只读字段
+        extra_kwargs={
+        "test1":{
+                "min_length":1,
+                "max_length":100,
+            }
+        }
+
+    fields 字段的选项:
+        __all__ :全部字段生成
+        ["id","test1"]:生成部分字段
+    read_only_fields:设置字段为只读
+        ["test2"]:设置test2为只读字段
+    extra_kwargs:为字段生成模型里未定义的限制选项(类型为字典内嵌套字典)
+
+
+    ModelSeriazlizer父类含有create,update方法,直接传入instance和data然后save()即可
+
+APIView:
+    继承自django的views
+    提供自己的requests对象
+    返回自己的response对象
+    有自己的权限控制系统
+
+    request.query_params:获取GET请求信息例如:http:127.0.0.1:8000/test1?name=linjing
+    request.data:获取POST请求信息
+
+    from rest_framework.response import Response
+    return Response([{"lin":"jing"},{"s":"b"}],status=404)
+    可以返回的响应是列表,字典,json,字符串,最后还可以设置状态码
+
+GenericAPIView:即就是对APIView进行进一步的封装,使得公共部分可以直接调取即可使用
+    提供了复用性,
+    # 1.提供公共的属性,数据或者其他东西
+    queryset = Test.objects.all()#传入数据集
+    serializer_class = TestSerializer#传入序列化器
+
+    get_queryset()#获取数据集
+    get_serializer_class()#获取序列化器
+    #详情视图特用
+    get_objects()#根据lookup_field在queryset获取单个数据
+
+    #2.可以和一个或多个mixin类配合使用(提供通用的增上改查功能)
+        ListModelMixin.list():实现列出查询集结果
+            list已经将所有的结果传入
+        CreateModelMixin.create():实现创建和保存新模型实例
+        RetrieveModelMixin.retrieve():实现返回单个的模型实例
+        UpdateModelMixin.update():实现更新和保存单个模型实例
+        DestroyModelMixin.destory():实现删除单个对象
+
+
+三级视图:(仅有标准的增删改查功能,没有太多的自定义功能)
+只需要定义类,传入queryset,serializers,然后继承需要功能的父类即可
+类名                 父类                                   提供的方法,功能            作用
+CreateAPIView     GenericAPIView,CreateModelMixin           post(create)           创建单个对象
+ListAPIView       GenericAPIView,ListModelMixin             get(list)              查询所有数据
+
+RetrieveAPIView   GenericAPIView,RetrieveModelView          get(retrieve)          获取单个数据
+DestroyAPIView    GenericAPIView,DestroyModelView           delete(destroy)         删除单个数据
+UpdateAPIView     GenericAPIView,UpdateModelView            put(update)             修改单个数据
+
+视图集:
+    1.可以将一组相关的操作,放在一个类中完成
+    2.不提供get,post,改用retrieve和create方法来替代
+类名                       父类                                         作用
+ViewSet               APIView                                      做路由映射
+GenericViewSet        GenericAPIView                            路由映射,可使用三个属性,三个方法
+ModelViewSet          GenericAPIView和五个Mixin类                实现增删改查全部功能(路由需要进行映射,get全部变为list,)
+ReadOnlyModelViewSet  GenericAPIView,RetrieveModelMixin(获取单个数据)
+                      ,ListModelMixin(获取整体数据)                实现获取数据
+
+视图集的额外动作(方法):
+都需要在路由里对方法进行额外的映射,partial=True,则可以让仅仅对部分内容验证和修改
+    def test_foreign_2(self,request):
+        #获取foreign_id为1的数据
+        test_2 =Test.objects.filter(test_foreign=1)
+        #序列化数据
+        serialilzer =self.get_serializer(instance=test_2,many=True)
+        #返回数据
+        return Response(serialilzer.data)
+
+    def update_foreign(self,request,pk):
+        data=request.data#获取前端返回的数据
+        one_test=self.get_object()
+        #设置partial为true时,仅仅修改部分数据,检验也是通过的
+        serializer =self.get_serializer(instance=one_test,data=data,partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+
+视图集的路由:
+    #Default路由
+    router=DefaultRouter()#实例化默认路由类
+    router.register("viewset_router",views.TestModelViewset)#将视图集注册进路由类
+    urlpatterns += router.urls#将注册的路由加到urlpatterns
+
+    #smiple路由,比较简单一点,两个没啥大区别
+    router2=SimpleRouter()
+    router2.register("viewset_router2",views.TestModelViewset)
+    urlpatterns += router2.urls
+
+    如果设置好了路由,然后如果需要访问自定义的方法,需要在views
+        from rest_framework.decorators import action
+    然后action装饰在路由部署修改方法
+        @action(method=["GET"],detail=True),method输入的时处理这个函数的方法,detail是一个布尔值,是否处理详情视图
+    这样就可以通过路由加方法名来执行自定义的函数:http://127.0.0.1:8000/test7/viewset_router/  test_foreign_2(前面为路由,最后的这个是方法名字)
+
+权限认证:(首先全局权限设置,然后局部权限设置)
+#DRF配置信息(setting配置)
+    REST_FRAMEWORK = {
+        #全局设置权限
+        'DEFAULT_PERMISSION_CLASSES': [
+            # 'rest_framework.permissions.IsAuthenticated',#普通用户
+            "rest_framework.permissions.AllowAny"#允许任何人
+            # "rest_framework.permissions.IsAdminUser"#管理员
+        ]
+    }
+
+    局部视图:
+        authentication_classes = [BasicAuthentication,SessionAuthentication]#局部认证
+        permission_classes = [AllowAny]#局部权限认证,
+
+限流设置:
+    #全局设置
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',#匿名用户
+        'rest_framework.throttling.UserRateThrottle'#认证用户
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '2/day',#全局没登陆的用户流量设置
+        'user': '1000/day'#全局已经登录的用户的流量限制
+    }
+    #局部设置:
+    throttle_classes = [AnonRateThrottle]#设置局部限流,这里设置了只对匿名用户限流
+
+    # 定制限流,在这里设置好,和上面的有些冲突,有这个就不要上面的了
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.ScopedRateThrottle',
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'contacts': '1000/day',#可以调用此限流设置
+        'uploads': '20/day'
+    }
+    #然后在局部视图里调用
+    throttle_scope = "contacts"#这个字符串必须要自己定义好的限流政策
+
+
+#分页数据Pagination:
+    #全局分页
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 5
+
+    #局部分页
+    pagination_class = PageNumberPagination (from rest_framework.pagination import引入的分页器)
+
+    自定义的分页:继承分页类,对内容进行修改
+    class mypage(PageNumberPagination):
+        page_size_query_param="page_size"
+
+
+django_filters过滤不需要数据,精确查询,(学习时这里出问题了,后续再继续看看)
+    pip install django-filters
+    注册到INSTALLED_APPS里
+    设置全局配置
+        'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+
+异常处理:
+    #全局异常处理
+    "EXCEPTION_HANDLER":"start.my_exception.handler",#全局由start下的my_exception.py的2handler类处理,具体看文档
+    每当页面返回exception时都会由相应的处理
+
+接口文档:(数据处理接口)
+    coreapi生成文档:先pip安装
+    主路由引入:from rest_framework.documentation import include_docs_urls
+    设置好路径就好
+    可以自己定义文档:"""get:文档解析(就会显示在文档中了)"""
+
+修改json返回结果:对分页或limit的类进行重写,def get_paginated_response()就可以了
+
+
+
+

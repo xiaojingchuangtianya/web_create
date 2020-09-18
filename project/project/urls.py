@@ -17,9 +17,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path,include
-
+from data import urls as data_url
+from webrtc_use import urls as webrtc
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("data_api/",include(data_url)),
+    path("online/",include(webrtc)),
+
+
     #这行设计为ckeditor的访问路径
     path("ckeditor",include("ckeditor_uploader.urls"))
 ]
